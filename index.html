@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>En-captcha example</title>
+	<style type="text/css">
+body{
+	background-color: blueviolet;
+}
+		h2{ text-align: center }
+		.examples{
+			width: 300px;
+			height: 400px;
+			background-color: #04B486;
+			display: inline-block;
+			padding: 15px 20px;
+			margin: 5px;
+		}
+	</style>
+</head>
+<body>
+	<h2>En-captcha Example</h2>
+	<div class="examples">
+		<h3>CAPTCHA embedded on form</h3>
+		<p>
+			<form method="GET" action="http://example.com/" id="exampleForm">
+				<input type="text" name="title">
+				<button type="submit">Submit</button>
+			<form>
+		</p>
+		<div id="captcha_container"></div>
+	</div>
+</body>
+<script type="text/javascript" src="../dist/encaptcha.min.js"></script>
+<script type="text/javascript">
+
+window.onload = function(){
+
+	var enc3 = new Encaptcha({
+		char_count: 5, // 4,5 or 6
+		container: '#captcha_container',
+		reload_sec: 30,
+		form: '#exampleForm',
+		onSuccess: function(){
+			alert("Captcha match was successful, OK to redirect");
+		},
+		onfailure: function(){
+			alert("Captcha match was failed");
+		},
+
+	});
+	enc3.run();
+}
+</script>
+</html>
